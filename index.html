@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Textty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      html,
+      body,
+      main {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      textarea {
+        resize: none;
+        width: 100%;
+        height: 100%;
+        height: calc(100% - 10px);
+        position: absolute;
+        top: 0px;
+        border: 0px;
+        margin: 10px 0px 0px 0px;
+        padding: 0px 10px 10px 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        z-index: auto;
+        line-height: normal;
+        font-size: 15px;
+        transition: none 0s ease 0s;
+        background-color: #fefefe !important;
+        color: #1f202c;
+      }
+
+      textarea:focus{
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <textarea></textarea>
+    </main>
+  </body>
+</html>
