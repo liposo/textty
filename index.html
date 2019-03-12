@@ -71,7 +71,6 @@
         var container = document.querySelector(options.container);
         quill.on("text-change", function() {
           var text = quill.getText().trim();
-          console.log(text.length);
           if (options.unit === "word") {
             if(text.length > 0) {
               container.innerText = text.split(/\s+/).length + " Words";
