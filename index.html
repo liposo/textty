@@ -31,7 +31,6 @@
 
       .ql-editor {
         background: #fefefe;
-        color: #34515e;
         height: 100vh;
       }
 
@@ -46,10 +45,10 @@
 
   <body>
     <div id="editor"></div>
-    <div id="counter">Word count: 0</div>
+    <div id="counter">0 Words</div>
     <script>
       var toolbarOptions = [
-        [{ size: ["small", "normal", "large", "huge"] }],
+        [{ size: ["normal", "large", "huge"] }],
         [{ font: [] }],
         [{ align: [] }],
         [{ color: [] }],
@@ -64,14 +63,14 @@
         quill.on("text-change", function() {
           var text = quill.getText();
           if (options.unit === "word") {
-            container.innerText =
-              "Word count: " + (text.split(/\s+/).length - 1);
+            container.innerText = (text.split(/\W+/).length - 1) + " Words";
           } else {
-            container.innerText = "Character count:" + text.length;
+            container.innerText = text.length + " Characters";
           }
         });
       });
 
+      //Enable Grammarly extension
       let Inline = Quill.import("blots/inline");
       class GrammarlyInline extends Inline {}
       GrammarlyInline.tagName = "G";
