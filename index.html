@@ -70,9 +70,14 @@
       Quill.register("modules/counter", function(quill, options) {
         var container = document.querySelector(options.container);
         quill.on("text-change", function() {
-          var text = quill.getText();
+          var text = quill.getText().trim();
+          console.log(text.length);
           if (options.unit === "word") {
-            container.innerText = text.split(/\W+/).length - 1 + " Words";
+            if(text.length > 0) {
+              container.innerText = text.split(/\s+/).length + " Words";
+            } else {
+              container.innerText = "0 Words";
+            }
           } else {
             container.innerText = text.length + " Characters";
           }
