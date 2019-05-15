@@ -12,7 +12,11 @@
       href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans"
+      rel="stylesheet"
+    />
 
     <style>
       html,
@@ -29,6 +33,17 @@
         align-items: center;
       }
 
+      .ql-toolbar.ql-snow {
+        border: none;
+        margin-top: 24px;
+        font-family: "Nunito Sans", sans-serif;
+      }
+
+      .ql-container.ql-snow {
+        border: none;
+        padding: 16px;
+      }
+
       .ql-editor {
         background: #fefefe;
         height: 100vh;
@@ -41,28 +56,20 @@
         color: #34515e;
       }
 
-      .ql-save::after {
-        position: fixed;
-        margin-top: 2px;
-        content: "Save as .txt";
-        margin-left: 5px;
-      }
-
     </style>
   </head>
 
   <body>
     <div id="editor"></div>
-    <div id="counter">0 Words</div>
+    <div id="counter">0</div>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
       var toolbarOptions = [
         [{ size: [] }],
-        [{ font: [] }],
         [{ align: [] }],
         [{ color: [] }],
         ["bold", "italic", "underline", "strike"],
         ["blockquote", "code-block"],
-        [{ list: "ordered" }, { list: "bullet" }],
         [{ script: "sub" }, { script: "super" }],
         ["save"]
       ];
@@ -71,14 +78,10 @@
         var container = document.querySelector(options.container);
         quill.on("text-change", function() {
           var text = quill.getText().trim();
-          if (options.unit === "word") {
-            if(text.length > 0) {
-              container.innerText = text.split(/\s+/).length + " Words";
-            } else {
-              container.innerText = "0 Words";
-            }
+          if (text.length > 0) {
+            container.innerText = text.split(/\s+/).length;
           } else {
-            container.innerText = text.length + " Characters";
+            container.innerText = "0";
           }
         });
       });
@@ -102,11 +105,9 @@
             }
           },
           counter: {
-            container: "#counter",
-            unit: "word"
+            container: "#counter"
           }
         },
-        placeholder: "Textty is a minimal online text editor",
         theme: "snow"
       });
 
@@ -117,7 +118,8 @@
 
       var customButton = document.querySelector(".ql-save");
 
-      customButton.innerHTML = "<img src=\"img/save.svg\" width=\"18px\" height=\"18px\">";
+      customButton.innerHTML =
+        '<img src="img/save.svg" width="18px" height="18px">';
 
       customButton.addEventListener("click", function() {
         if (navigator.msSaveBlob) {
@@ -141,9 +143,7 @@
         }
       });
 
-
       document.querySelector(".ql-editor").removeAttribute("data-gramm");
-
     </script>
   </body>
 </html>
